@@ -1,20 +1,31 @@
 ﻿#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdlib>
 using namespace std;
-
-int main(int argc, char* argv[])
+int main()
 {
-    int array1[10];
-    cout << "Enter elementi massiva: " << endl;
-    int sum = 0;
-    for (int counter = 0; counter < 10; counter++)
-        cin >> array1[counter];
-    cout << "oct" << "\t"
-        << "dec" << "\t"
-        << "hex" << "\t" << endl;
-    for (int counter = 0; counter < 10; counter++)
-        cout << oct << array1[counter] << "\t"
-        << dec << array1[counter] << "\t" << uppercase
-        << hex << array1[counter] << "\t" << endl;
-    system("pause");
-    return 0;
+	setlocale(LC_CTYPE, "rus");
+
+	ifstream inf("C:\\ttt.txt");
+
+	if (!inf)
+	{
+		cerr << "Файл ненайден!" << endl;
+		exit(1);
+	}
+
+	int i = 0;
+	double c, s = 0.0;
+
+	while (!inf.eof())
+	{
+		inf >> c;
+		s += c;
+		i++;
+	}
+	inf.close();
+	cout << s / i;
+
+	return 0;
 };
