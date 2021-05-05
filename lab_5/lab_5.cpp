@@ -4,8 +4,8 @@
 using namespace std;
 int main()
 {
-	ifstream f("v13.bin");
-	ofstream f2("data_v13.bin");
+	ifstream f("C:\\ttt.txt");
+	ofstream f2("C:\\rrr.txt");
 	f.seekg(0, ios::end);
 	const int fsize = f.tellg();
 	f.seekg(0, ios::beg);
@@ -13,9 +13,6 @@ int main()
 	float* buf2 = new float[fsize];
 	f.read(buf, fsize);
 	int i = 0;
-	/*for (i = 0; i < fsize; i++)
-   cout << (double)buf[i] << endl;
-	*/
 	for (i = 0; i < fsize; i++)
 	{
 		buf2[i] = 1 / ((float)buf[i]);
