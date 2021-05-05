@@ -15,17 +15,24 @@ int main()
 		exit(1);
 	}
 
-	int i = 0;
-	double c, s = 0.0;
+	int c;
 
-	while (!inf.eof())
+	while (inf)
 	{
 		inf >> c;
-		s += c;
-		i++;
+
 	}
 	inf.close();
-	cout << s / i;
+
+	ofstream outf("C:\\rrr.txt");
+
+	if (!outf)
+	{
+		cerr << "Файл ненайден!" << endl;
+		exit(1);
+	}
+
+	outf << c;
 
 	return 0;
 };
