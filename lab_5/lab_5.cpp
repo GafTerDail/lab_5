@@ -1,63 +1,31 @@
-﻿#include <iostream>
+
 #include <iomanip>
+#include <fstream>
 using namespace std;
-
-void printHeader(int start, int end) {
-    cout << setw(4) << " ";
-    for (int firstrow = start; firstrow <= end; firstrow++) {
-        cout << setw(3) << firstrow << " ";
-    }
-    cout << endl;
-    cout << setw(4) << " ";
-    for (int secondrow = start; secondrow <= end; secondrow++) {
-        cout << "----";
-    }
-    cout << endl;
-}
-
 int main()
 {
-    setlocale(LC_ALL, "RUSSIAN");
-    int start;
-    int end;
-    int CC;
-tryAgain:
-    cout << " " << endl;
-    cout << "Введите систему счисления (8 - Восьмеричная, 10 - десятичная, 16 - шестнадцатеричная): " << endl;
-    cin >> CC;
-    cout << "Введите начальный индекс (целое число): " << endl;
-    cin >> start;
-    cout << "Введите конечный индекс (целое число): " << endl;
-    cin >> end;
-    for (int i = start; i <= end; i++) {
-        if (i == start) {
-            printHeader(start, end);
-        }
-        for (int j = start; j <= end; j++) {
-            if (j == start) {
-                cout << setw(3) << i << "|";
-            }
-            if (CC == 8)
-            {
-                cout << setw(3) << oct << (i * j) << " ";
-            }
-            else
-            {
-                if (CC == 10)
-                {
-                    cout << setw(3) << dec << (i * j) << " ";
-                }
-                else
-                {
-                    if (CC == 16)
-                    {
-                        cout << setw(3) << uppercase << hex << (i * j) << " ";
-                    }
-                }
-            }
-        }
-        cout << endl;
-    }
-    goto tryAgain;
-    return 0;
-};
+	ifstream f("v13.bin");
+	ofstream f2("data_v13.bin");
+	f.seekg(0, ios::end);
+	const int fsize = f.tellg();
+	f.seekg(0, ios::beg);
+	char* buf = new char[fsize];
+	float* buf2 = new float[fsize];
+	f.read(buf, fsize);
+	int i = 0;
+	/*for (i = 0; i < fsize; i++)
+   cout << (double)buf[i] << endl;
+	*/
+	for (i = 0; i < fsize; i++)
+	{
+		buf2[i] = 1 / ((float)buf[i]);
+		cout << buf2[i] << endl;
+	}
+	f2.write((char*)buf2, fsize);
+	f.close();
+	f2.close();
+	delete[] buf;
+	delete[] buf2;
+	return 0;
+}
+
