@@ -1,20 +1,63 @@
 ﻿#include <iostream>
+#include <iomanip>
 using namespace std;
 
-int main(int argc, char* argv[])
+void printHeader(int start, int end) {
+    cout << setw(4) << " ";
+    for (int firstrow = start; firstrow <= end; firstrow++) {
+        cout << setw(3) << firstrow << " ";
+    }
+    cout << endl;
+    cout << setw(4) << " ";
+    for (int secondrow = start; secondrow <= end; secondrow++) {
+        cout << "----";
+    }
+    cout << endl;
+}
+
+int main()
 {
-    int array1[10];
-    cout << "Enter elementi massiva: " << endl;
-    int sum = 0;
-    for (int counter = 0; counter < 10; counter++)
-        cin >> array1[counter];
-    cout << "oct" << "\t"
-        << "dec" << "\t"
-        << "hex" << "\t" << endl;
-    for (int counter = 0; counter < 10; counter++)
-        cout << oct << array1[counter] << "\t"
-        << dec << array1[counter] << "\t" << uppercase
-        << hex << array1[counter] << "\t" << endl;
-    system("pause");
+    setlocale(LC_ALL, "RUSSIAN");
+    int start;
+    int end;
+    int CC;
+tryAgain:
+    cout << " " << endl;
+    cout << "Введите систему счисления (8 - Восьмеричная, 10 - десятичная, 16 - шестнадцатеричная): " << endl;
+    cin >> CC;
+    cout << "Введите начальный индекс (целое число): " << endl;
+    cin >> start;
+    cout << "Введите конечный индекс (целое число): " << endl;
+    cin >> end;
+    for (int i = start; i <= end; i++) {
+        if (i == start) {
+            printHeader(start, end);
+        }
+        for (int j = start; j <= end; j++) {
+            if (j == start) {
+                cout << setw(3) << i << "|";
+            }
+            if (CC == 8)
+            {
+                cout << setw(3) << oct << (i * j) << " ";
+            }
+            else
+            {
+                if (CC == 10)
+                {
+                    cout << setw(3) << dec << (i * j) << " ";
+                }
+                else
+                {
+                    if (CC == 16)
+                    {
+                        cout << setw(3) << uppercase << hex << (i * j) << " ";
+                    }
+                }
+            }
+        }
+        cout << endl;
+    }
+    goto tryAgain;
     return 0;
 };
