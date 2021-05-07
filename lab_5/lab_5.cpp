@@ -4,8 +4,8 @@
 using namespace std;
 int main()
 {
-	ifstream inf("C:\\ttt.txt");
-	ofstream outf("C:\\rrr.txt");
+	ifstream inf("C:\\data_v5.bin");
+	ofstream outf("C:\\rrr.bin");
 	inf.seekg(0, ios::end);
 	const int fsize = inf.tellg();
 	inf.seekg(0, ios::beg);
