@@ -7,7 +7,7 @@ int main()
 {
 	setlocale(LC_CTYPE, "rus");
 
-	ifstream inf("C:\\ttt.txt");
+	ifstream inf("C:\\data_v5.txt");
 
 	if (!inf)
 	{
